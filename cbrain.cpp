@@ -88,6 +88,7 @@ class Brain
 		{
 			cout<<buffer[i];
 		}
+		cout<<endl;
 	}
 	void print_mem(char input)
 	{
@@ -96,108 +97,99 @@ class Brain
 		{
 			cout<<mem[i]<<"|";
 		}
-		cout<<"P="<<pointer<<"\tSymbol:"<<input<<endl;
+		cout<<"P="<<pointer<<" Symbol:"<<input<<" Read:"<<pc<<endl;
 	}
 	void execute()
 	{
+		cout<<"Do you want to display memory?(y/n):";
+		char choice;
+		cin>>choice;
 		mem=new int[t_m]();
 		output_buffer=new char[out_length+1];
 		//print_mem();
 		while(pc<data_length){
 		char input=buffer[pc];
 		//cout<<"DEBUG1:"<<input<<endl;
+		if(choice=='y'||choice=='Y')
 		print_mem(input);
 		switch(input)
 		{
 			case '+':{
-				if(subroutine_false)
-				{
+				
 					inc();break;
-				}
+
 
 			}
 			case '-':{
-				if(subroutine_false)
-				{
+				
 					dec();break;
-				}
+
 
 			}
 			case '>':{
-				if(subroutine_false)
-				{
+				
 					mov_r();break;
-				}
+
 
 			}
 			case '<':{
-				if(subroutine_false)
-				{
+				
 					mov_l();break;
-				}
+
 
 			}
 			case '.':{
-				if(subroutine_false)
-				{
+				
 					out();break;
-				}
+
 
 			}
 			case ',':{
-				if(subroutine_false)
-				{
+				
 					inp();break;
-				}
+
 
 			}
 			case '*':{
-				if(subroutine_false)
-				{
+			
 					mul();break;
-				}
+
 
 			}
 			case '/':{
-				if(subroutine_false)
-				{
+				
 					div();break;
-				}
+
 
 			}
 			case '^':{
-				if(subroutine_false)
-				{
+				
 					jump_zero();break;
-				}
+
 
 			}
 			case '~':{
-				if(subroutine_false)
-				{
+				
 					search_zero();break;
-				}
+
 
 			}
 			case ';':{
-				if(subroutine_false)
-				{
+				
 					search_nonzero();break;
-				}
+
 
 			}
 			case '[':{
-				if(subroutine_false)
-				{
+				
 					loop_start();break;
-				}
+
 
 			}
 			case ']':{
-				if(subroutine_false)
-				{
+				
 					loop_end();break;
-				}
+
 
 			}
 		}
@@ -295,13 +287,15 @@ class Brain
 		{
 			
 			//subroutine_false=0;
-			loop_stack[loop_s_top++]=pc;
+			//loop_stack[loop_s_top++]=pc;
 			int remember=pc;
 			for(int i=pc;;i++)
 			{
+				if(i==data_length)break;
 				if(buffer[i]=='[')
 				{
-					loop_stack[loop_s_top++]=pc;
+					loop_stack[loop_s_top++]=i;
+					
 				}
 				if(buffer[i]==']')
 				{

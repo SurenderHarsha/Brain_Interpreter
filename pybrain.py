@@ -68,7 +68,7 @@ def brain(s):
                         l[p]-=1
                         if l[p]<0:
                                 l[p]=255
-print("Welcome to BrainFuck interpreter power by Python written by Shubham & Surendar..!")
+print("Welcome to Brain interpreter power by Python written by Shubham & Surender!")
 print("Memory of 20 have been given,run in full screen to better visualization")
 print("type 'exit' to exit")
 

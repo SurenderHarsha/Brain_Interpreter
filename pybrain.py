@@ -28,13 +28,13 @@ def looper(s,start,end):
                                 passer-=1
                                 continue
                         for j in loops:
-                                if i==j[0] and j[1]<end and j[0]>start:
+                                if i==j[0] and j[0]>start and j[1]<end:
                                         passer+=j[1]-j[0]
                                         looper(s,j[0],j[1])
                                 elif j[0]>end:
                                         break
-                                else:
-                                        brain(s[i])
+                        brain(s[i])
+
 def brain(s):
         global p
         global l
@@ -50,7 +50,7 @@ def brain(s):
                                 else:
                                         print("Enter any single character value")
                 elif s[i]=='.':
-                        print(l[p])
+                        print(chr(l[p]),end='')
 
                 elif s[i]=='>':
                         p+=1
@@ -68,10 +68,9 @@ def brain(s):
                         l[p]-=1
                         if l[p]<0:
                                 l[p]=255
-print("Welcome to BrainFuck interpreter power by Python written by Shubham & Surendar..!")
-print("Memory of 20 have been given,run in full screen to better visualization")
+print("Welcome to BrainFuck interpreter power by Python ,written by Shubham & Surendar..!")
+print("Memory of 20 have been given,run in full screen for better visualization")
 print("type 'exit' to exit")
-
 while(1):
         s=input()
         if s=='exit':
@@ -109,23 +108,19 @@ while(1):
                         if t!='':
                                 if t[0]!='[':
                                         brain(t)
-                                        printMEM()
                                 else:
                                         looper(s,start,i[0])
-                                        printMEM()
                                 start=i[0]
                         t=s[start:i[1]+1]
                         if t[0]!='[':
                                 brain(t)
-                                printMEM()
                         else:
                                 looper(s,start,i[1])
-                                printMEM()
                         start=i[1]+1
                 t=s[start:length]
                 if t!='':
                         brain(t)
-                        printMEM()
+                printMEM()
         else:
                 brain(s)
                 printMEM()
